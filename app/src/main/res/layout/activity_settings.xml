@@ -29,6 +29,14 @@
         android:layout_marginBottom="20sp"
         android:inputType="phone"/>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sex"
+        android:background="@null"
+        android:hint="Sex"
+        android:layout_marginBottom="20sp" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,5 +47,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/back"
         android:text="back"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/signout"
+        android:text="Sign Out"
+        android:onClick="signOutUser"/>
 
 </LinearLayout>

@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.vlist.hola.MainActivity" />
-        <activity android:name="com.vlist.hola.ChooseLoginRegistrationActivity">
+        <activity android:name="com.vlist.hola.StarterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.vlist.hola.ChooseLoginRegistrationActivity" />
         <activity android:name="com.vlist.hola.RegistrationActivity" />
         <activity android:name="com.vlist.hola.LoginActivity" />
         <activity android:name="com.vlist.hola.SettingsActivity" />

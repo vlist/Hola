@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void logoutUser(View view) {
+    public void signOutUser(View view) {
         mAuth.signOut();
         Intent intent = new Intent(MainActivity.this, ChooseLoginRegistrationActivity.class);
         startActivity(intent);

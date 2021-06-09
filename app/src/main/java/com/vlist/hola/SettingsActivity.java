@@ -39,7 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     final private String TAG = "SettingActivity";
 
-    private EditText mNameField, mPhoneField;
+    private EditText mNameField, mPhoneField, mSexField;
 
     private Button mBack, mConfirm;
 
@@ -59,6 +59,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         mNameField = (EditText) findViewById(R.id.name);
         mPhoneField = (EditText) findViewById(R.id.phone);
+        mSexField = (EditText) findViewById(R.id.sex);
 
         mProfileImage = (ImageView) findViewById(R.id.profileImage);
 
@@ -112,6 +113,7 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                     if (map.get("sex") != null) {
                         userSex = map.get("sex").toString();
+                        mSexField.setText(userSex);
                     }
                     Glide.clear(mProfileImage);
                     if (map.get("profileImageUrl") != null) {
@@ -139,10 +141,12 @@ public class SettingsActivity extends AppCompatActivity {
     private void saveUserInformation() {
         name = mNameField.getText().toString();
         phone = mPhoneField.getText().toString();
+        userSex = mSexField.getText().toString();
 
         Map userInfo = new HashMap();
         userInfo.put("name", name);
         userInfo.put("phone", phone);
+        userInfo.put("sex", userSex);
         mUserDatabase.updateChildren(userInfo);
         if (resultUri != null) {
             StorageReference filepath = FirebaseStorage.getInstance().getReference().child("profileImages").child(userId);
@@ -189,6 +193,13 @@ public class SettingsActivity extends AppCompatActivity {
 
             finish();
         }
+    }
+
+    public void signOutUser(View view) {
+        mAuth.signOut();
+        Intent intent = new Intent(SettingsActivity.this, ChooseLoginRegistrationActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
