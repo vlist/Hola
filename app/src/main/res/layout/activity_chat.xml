@@ -1,41 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.vlist.hola.Chat.ChatActivity">
+    tools:context=".Chat.ChatActivity">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/sendLayout">
+        android:layout_above="@+id/send_layout">
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/message_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recyclerView"
-            android:scrollbars="vertical">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:scrollbars="vertical" />
     </androidx.core.widget.NestedScrollView>
+
     <LinearLayout
-        android:id="@+id/sendLayout"
+        android:id="@+id/send_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
-        <EditText
-            android:layout_weight="0.8"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="message..."
-            android:id="@+id/message"
-            />
-        <Button
-            android:layout_weight="0.2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Send"
-            android:id="@+id/send"/>
-    </LinearLayout>
 
+        <EditText
+            android:id="@+id/message_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10sp"
+            android:layout_weight="0.8"
+            android:hint="@string/message_input_placeholder" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/send_button"
+            style="@style/Widget.hola.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10sp"
+            android:layout_weight="0.2"
+            android:text="@string/send_button" />
+    </LinearLayout>
 </RelativeLayout>

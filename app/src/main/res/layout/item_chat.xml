@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/message_container_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20sp"
-        android:id="@+id/container">
-        <TextView
-            android:paddingBottom="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Text"
-            android:id="@+id/message"/>
+        android:elevation="10sp"
+        android:padding="20sp">
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/message_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5sp"
+                android:text="Text Message" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

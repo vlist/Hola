@@ -1,60 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SettingsFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/user_profile_image"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_margin="20sp"
+        android:contentDescription="@string/user_profile_image"
+        android:src="@mipmap/ic_launcher" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/profileImage"
-            android:layout_width="100sp"
-            android:layout_height="100sp"
-            android:layout_marginBottom="20sp"
-            android:src="@mipmap/ic_launcher" />
-
-        <EditText
-            android:id="@+id/name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20sp"
-            android:background="@null"
-            android:hint="Name" />
+            android:layout_margin="5sp"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/phone"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10sp"
+
+                android:text="@string/username"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/username_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10sp"
+                android:text="@string/attr_placeholder"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20sp"
-            android:background="@null"
-            android:hint="Phone"
-            android:inputType="phone" />
+            android:layout_margin="5sp"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/sex"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10sp"
+
+                android:text="@string/email"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/email_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10sp"
+                android:text="@string/attr_placeholder"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20sp"
-            android:background="@null"
-            android:hint="Sex" />
+            android:layout_margin="5sp"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/confirm"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10sp"
+                android:text="@string/phone_number"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/phone_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10sp"
+                android:text="@string/attr_placeholder"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="confirm" />
+            android:layout_margin="5sp"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/signout"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10sp"
+
+                android:text="@string/gender"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/gender_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10sp"
+                android:text="@string/attr_placeholder"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="signOutUser"
-            android:text="Sign Out" />
+            android:layout_margin="5sp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10sp"
+
+                android:text="@string/description"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/description_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10sp"
+                android:text="@string/attr_placeholder"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="20sp" />
+        </LinearLayout>
     </LinearLayout>
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.hola.Button"
+            android:id="@+id/setting_finish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35sp"
+            android:layout_marginVertical="10sp"
+            android:text="@string/button_finish" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.hola.Button"
+            android:id="@+id/setting_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35sp"
+            android:layout_marginVertical="10sp"
+            android:text="@string/button_cancel" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/setting_logout"
+            style="@style/Widget.hola.AlertButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35sp"
+            android:layout_marginVertical="10sp"
+            android:text="@string/button_logout"/>
+
+    </LinearLayout>
+</LinearLayout>
