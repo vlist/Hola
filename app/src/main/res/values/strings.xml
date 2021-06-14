@@ -23,4 +23,6 @@
     <string name="phone_number">Phone Number</string>
     <string name="send_button">Send</string>
     <string name="message_input_placeholder">Message...</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 </resources>
