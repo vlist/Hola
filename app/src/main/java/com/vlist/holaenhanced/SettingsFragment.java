@@ -206,7 +206,6 @@ public class SettingsFragment extends Fragment {
         if (resultUri != null) {
             StorageReference filepath = FirebaseStorage.getInstance().getReference().child("profileImages").child(userId);
             Bitmap bitmap = null;
-
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplication().getContentResolver(), resultUri);
             } catch (IOException e) {
