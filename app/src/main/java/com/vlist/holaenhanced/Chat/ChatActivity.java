@@ -1,6 +1,7 @@
 package com.vlist.holaenhanced.Chat;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +28,8 @@ public class ChatActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mChatAdapter;
-    private RecyclerView.LayoutManager mChatLayoutManager;
+    private LinearLayoutManager mChatLayoutManager;
+    private NestedScrollView mChatScrollView;
 
     private MaterialButton mSendButton;
     private EditText mSendEditText;
@@ -57,11 +59,21 @@ public class ChatActivity extends AppCompatActivity {
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(false);
 
-        mChatLayoutManager = new LinearLayoutManager(ChatActivity.this);
+        mChatLayoutManager = new LinearLayoutManager(ChatActivity.this,LinearLayoutManager.VERTICAL, false);
+        mChatLayoutManager.setStackFromEnd(true);
         mRecyclerView.setLayoutManager(mChatLayoutManager);
 
         mChatAdapter = new ChatAdapter(getDataSetChat(), ChatActivity.this);
         mRecyclerView.setAdapter(mChatAdapter);
+
+        mChatScrollView = findViewById(R.id.chat_scrollview);
+
+        mSendEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mChatScrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
+            }
+        });
 
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +81,12 @@ public class ChatActivity extends AppCompatActivity {
                 sendMessage();
             }
         });
+
+
+
     }
+
+
 
     private void sendMessage() {
         String sendMessageText = mSendEditText.getText().toString();
@@ -148,6 +165,8 @@ public class ChatActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+
     }
 
     private ArrayList<ChatObject> resultsChat = new ArrayList<ChatObject>();
