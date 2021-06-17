@@ -42,14 +42,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private String profileImageUrl;
     private String userId;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        navBarUserProfile = findViewById(R.id.nav_bar_userprofile);
-        navBarUsername = findViewById(R.id.nav_bar_username);
 
         setNavigationViewListener();
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawer = (DrawerLayout) findViewById(R.id.main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         toggle.syncState();
         drawer.setElevation(30);
@@ -71,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .commit();
     }
 
-    private void switchToFragment(Fragment f){
+    private void switchToFragment(Fragment f) {
         fm.beginTransaction()
                 .replace(R.id.main_content, f)
                 .commit();
@@ -79,6 +77,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setNavigationViewListener() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+
+        navBarUsername = navigationView.getHeaderView(0).findViewById(R.id.nav_bar_username);
+        navBarUserProfile = navigationView.getHeaderView(0).findViewById(R.id.nav_bar_userprofile);
+        getUserInfo();
         navigationView.setNavigationItemSelectedListener(this);
     }
 
