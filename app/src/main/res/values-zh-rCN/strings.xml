@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Hola Enhanced</string>
+    <string name="app_name">Hola</string>
     <string name="login">登陆</string>
     <string name="register">注册</string>
     <string name="hello_blank_fragment">空白Fragment</string>
