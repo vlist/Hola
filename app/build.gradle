@@ -26,7 +26,24 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    sourceSets{
+        main{
+            res.srcDirs = [
+                    'src/main/res/layout/main',
+                    'src/main/res/layout/settings',
+                    'src/main/res/layout/chat',
+                    'src/main/res/layout/matches',
+                    'src/main/res/layout/recommend',
+                    'src/main/res/layout/login_and_register',
+
+                    'src/main/res/'
+
+            ]
+        }
+    }
 }
+
+
 
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'

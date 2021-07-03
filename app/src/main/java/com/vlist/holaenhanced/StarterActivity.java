@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.vlist.holaenhanced.LoginAndRegister.ChooseFragment;
 
 
 public class StarterActivity extends AppCompatActivity {

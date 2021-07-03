@@ -1,4 +1,4 @@
-package com.vlist.holaenhanced;
+package com.vlist.holaenhanced.LoginAndRegister;
 
 import android.os.Bundle;
 
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.vlist.holaenhanced.R;
 
 
 /**

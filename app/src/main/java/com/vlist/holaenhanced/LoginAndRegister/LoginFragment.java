@@ -1,4 +1,4 @@
-package com.vlist.holaenhanced;
+package com.vlist.holaenhanced.LoginAndRegister;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,7 +22,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
+import com.vlist.holaenhanced.MainActivity;
+import com.vlist.holaenhanced.R;
 
 
 /**
@@ -82,7 +81,7 @@ public class LoginFragment extends Fragment {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
-                    Intent intent = new Intent(getActivity().getApplicationContext(),MainActivity.class);
+                    Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
             }
