@@ -11,6 +11,7 @@
         android:theme="@style/Theme.HolaEnhanced">
         <activity android:name=".Chat.ChatActivity" />
         <activity android:name=".StarterActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

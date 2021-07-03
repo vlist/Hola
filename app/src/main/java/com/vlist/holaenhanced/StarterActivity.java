@@ -10,6 +10,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vlist.holaenhanced.LoginAndRegister.ChooseFragment;
 
+import java.util.Objects;
+
 
 public class StarterActivity extends AppCompatActivity {
     final private String TAG = "StarterActivity";
@@ -21,6 +23,8 @@ public class StarterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starter);
+
+        // Objects.requireNonNull(getSupportActionBar()).hide();
 
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
