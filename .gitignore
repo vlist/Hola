@@ -1,3 +1,4 @@
+local.properties
 # Apple binary file
 .DS_Store
 __MACOSX/
