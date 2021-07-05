@@ -1,5 +1,6 @@
 package com.vlist.holaenhanced;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -37,6 +38,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -109,7 +111,7 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         mFinish = (MaterialButton) view.findViewById(R.id.setting_finish);
         mBack = (MaterialButton) view.findViewById(R.id.setting_cancel);
@@ -125,7 +127,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_content,new PlaceholderFragment())
+                        .replace(R.id.main_content, new PlaceholderFragment())
                         .commit();
             }
         });
@@ -149,7 +151,7 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        mLogout.setOnClickListener(new View.OnClickListener(){
+        mLogout.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -195,40 +197,45 @@ public class SettingsFragment extends Fragment {
 
     }
 
-    private void saveUserInformation() {
-        String name = mUsername.getText().toString();
-        String phone = mPhoneNumber.getText().toString();
-
-        Map userInfo = new HashMap();
-        userInfo.put("name", name);
-        userInfo.put("phone", phone);
-        mUserDatabase.updateChildren(userInfo);
+    private void uploadProfileImage() {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
         if (resultUri != null) {
             StorageReference filepath = FirebaseStorage.getInstance().getReference().child("profileImages").child(userId);
             Bitmap bitmap = null;
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplication().getContentResolver(), resultUri);
+                Bitmap oriBitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplication().getContentResolver(), resultUri);
+                if (oriBitmap.getWidth() >= oriBitmap.getHeight()) {
+                    bitmap = Bitmap.createBitmap(oriBitmap, oriBitmap.getWidth() / 2 - oriBitmap.getHeight() / 2, 0,
+                            oriBitmap.getHeight(),
+                            oriBitmap.getHeight()
+                    );
+                } else {
+                    bitmap = Bitmap.createBitmap(oriBitmap, 0, oriBitmap.getHeight() / 2 - oriBitmap.getWidth() / 2,
+                            oriBitmap.getWidth(),
+                            oriBitmap.getWidth()
+                    );
+                }
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
             byte[] data = baos.toByteArray();
             UploadTask uploadTask = filepath.putBytes(data);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Log.w(TAG, "uploadTask failure");
-                    Toast.makeText(getActivity(),"uploadTask failure",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "uploadTask failure", Toast.LENGTH_SHORT).show();
                 }
             });
 
+            Bitmap finalBitmap = bitmap;
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Log.w(TAG, "uploadTask success");
-
+                    mProfileImage.setImageBitmap(finalBitmap);
                     Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
                     result.addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
@@ -237,7 +244,7 @@ public class SettingsFragment extends Fragment {
                             userInfo.put("profileImageUrl", imageUri.toString());
                             mUserDatabase.updateChildren(userInfo);
 
-                            Toast.makeText(getActivity(),"uploadTask success",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "uploadTask success", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -245,10 +252,33 @@ public class SettingsFragment extends Fragment {
         }
     }
 
+    private void saveUserInformation() {
+        String name = mUsername.getText().toString();
+        String phone = mPhoneNumber.getText().toString();
+
+        Map userInfo = new HashMap();
+        userInfo.put("name", name);
+        userInfo.put("phone", phone);
+        mUserDatabase.updateChildren(userInfo);
+
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            final Uri imageUri = data.getData();
+            resultUri = imageUri;
+            uploadProfileImage();
+
+        }
+    }
+
     public void logoutUser() {
         mAuth.signOut();
-        Intent intent = new Intent(getActivity().getApplicationContext(),StarterActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent intent = new Intent(getActivity().getApplicationContext(), StarterActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 }
