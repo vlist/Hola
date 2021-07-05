@@ -90,15 +90,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id) {
             case R.id.nav_home:
                 switchToFragment(new PlaceholderFragment());
+                toolbar.setTitle("Home - Hola");
                 break;
             case R.id.nav_chats:
                 switchToFragment(new MatchesFragment());
+                toolbar.setTitle("Chat");
                 break;
             case R.id.nav_recommend:
                 switchToFragment(new RecommendFragment());
+                toolbar.setTitle("Recommend");
                 break;
             case R.id.nav_settings:
                 switchToFragment(new SettingsFragment());
+                toolbar.setTitle("Settings");
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
