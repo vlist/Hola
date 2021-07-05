@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
@@ -236,6 +237,7 @@ public class SettingsFragment extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Log.w(TAG, "uploadTask success");
                     mProfileImage.setImageBitmap(finalBitmap);
+                    updateNavProfileImage(finalBitmap);
                     Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
                     result.addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
@@ -243,12 +245,23 @@ public class SettingsFragment extends Fragment {
                             Map userInfo = new HashMap();
                             userInfo.put("profileImageUrl", imageUri.toString());
                             mUserDatabase.updateChildren(userInfo);
-
                             Toast.makeText(getActivity(), "uploadTask success", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
             });
+        }
+    }
+
+    private void updateNavProfileImage(Bitmap profileImage) {
+        AppCompatActivity main = (AppCompatActivity) getActivity();
+        if (main != null) {
+            ImageView navImage = main.findViewById(R.id.nav_bar_userprofile);
+            int height = navImage.getHeight();
+            int width = navImage.getWidth();
+            navImage.setImageBitmap(profileImage);
+            navImage.setMaxHeight(height);
+            navImage.setMaxWidth(width);
         }
     }
 
@@ -260,16 +273,13 @@ public class SettingsFragment extends Fragment {
         userInfo.put("name", name);
         userInfo.put("phone", phone);
         mUserDatabase.updateChildren(userInfo);
-
-
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
-            final Uri imageUri = data.getData();
-            resultUri = imageUri;
+            resultUri = data.getData();
             uploadProfileImage();
 
         }

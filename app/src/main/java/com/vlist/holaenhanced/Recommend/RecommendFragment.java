@@ -97,6 +97,7 @@ public class RecommendFragment extends Fragment {
         cardsAdapter = new CardsAdapter(getActivity().getApplicationContext(), R.layout.item_recommend, rowItems);
 
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) view.findViewById(R.id.card_container);
+
         flingContainer.setAdapter(cardsAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
@@ -108,7 +109,6 @@ public class RecommendFragment extends Fragment {
 
             @Override
             public void onLeftCardExit(Object dataObject) {
-
                 Cards obj = (Cards) dataObject;
                 String userId = obj.getUserId();
                 usersDb.child(userId).child("connections").child("nope").child(currentUId).setValue(true);

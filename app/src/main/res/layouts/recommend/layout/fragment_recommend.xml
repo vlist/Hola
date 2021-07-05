@@ -6,12 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".Recommend.RecommendFragment">
 
-    <com.lorentzos.flingswipe.SwipeFlingAdapterView
-        android:id="@+id/card_container"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        app:rotation_degrees="15"
-        tools:context=".Recommend.RecommendFragment" />
+        android:layout_height="match_parent">
+
+        <com.lorentzos.flingswipe.SwipeFlingAdapterView
+            android:id="@+id/card_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/options_buttons"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rotation_degrees="15"
+            tools:context=".Recommend.RecommendFragment" />
+
+        <LinearLayout
+
+            android:id="@+id/options_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:layout_margin="20sp"
+            android:layout_marginBottom="128dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="90sp"
+                android:layout_height="90sp"
+                android:layout_margin="10sp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="TODO"
+                android:elevation="10sp"
+                android:gravity="center_horizontal" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="90sp"
+                android:layout_height="90sp"
+                android:layout_margin="10sp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="TODO"
+                android:elevation="10sp"
+                android:gravity="center_horizontal" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </FrameLayout>
