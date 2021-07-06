@@ -3,7 +3,7 @@
     <color name="colorPrimary">#E0E0E0</color>
     <color name="colorPrimaryDark">#DC4D59</color>
     <color name="colorAccent">#E79CA0</color>
-    <color name="textColorDark">#442C2E</color>
+    <color name="textColorDark">#212121</color>
     <color name="textColorPrimary">#000000</color>
     <color name="toolbarIconColor">@color/textColorPrimary</color>
     <color name="loginPageBackgroundColor">#FFFFFF</color>

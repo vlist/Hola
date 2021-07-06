@@ -1,6 +1,7 @@
 package com.vlist.holaenhanced.Chat;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,7 +37,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private String currentUserID, matchId, chatId;
     DatabaseReference mDatabaseUser, mDatabaseChat;
-
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +45,14 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         matchId = getIntent().getExtras().getString("matchId");
-
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches").child(matchId).child("ChatId");
         mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chat");
+
+        mToolbar = (Toolbar) findViewById(R.id.chat_toolbar);
+        mToolbar.setTitle(getIntent().getExtras().getString("username"));
+        setSupportActionBar(mToolbar);
 
         getChatId();
 
@@ -59,7 +63,7 @@ public class ChatActivity extends AppCompatActivity {
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(false);
 
-        mChatLayoutManager = new LinearLayoutManager(ChatActivity.this,LinearLayoutManager.VERTICAL, false);
+        mChatLayoutManager = new LinearLayoutManager(ChatActivity.this, LinearLayoutManager.VERTICAL, false);
         mChatLayoutManager.setStackFromEnd(true);
         mRecyclerView.setLayoutManager(mChatLayoutManager);
 
@@ -83,9 +87,7 @@ public class ChatActivity extends AppCompatActivity {
         });
 
 
-
     }
-
 
 
     private void sendMessage() {
@@ -165,8 +167,6 @@ public class ChatActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-
     }
 
     private ArrayList<ChatObject> resultsChat = new ArrayList<ChatObject>();

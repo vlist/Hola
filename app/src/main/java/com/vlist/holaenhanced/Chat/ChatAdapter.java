@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vlist.holaenhanced.R;
@@ -40,12 +41,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolders> {
         holder.mMessage.setText(chatList.get(position).getMessage());
         if (chatList.get(position).getCurrentUser()) {
             holder.mContainer.setGravity(Gravity.END);
-            holder.mMessage.setTextColor(Color.parseColor("#404040"));
-            holder.mCard.setCardBackgroundColor(Color.parseColor("#F4F4F4"));
+            holder.mMessage.setTextColor(ContextCompat.getColor(context,R.color.textColorDark));
+            holder.mCard.setCardBackgroundColor(ContextCompat.getColor(context,R.color.colorAccent));
         } else {
             holder.mContainer.setGravity(Gravity.START);
-            holder.mMessage.setTextColor(Color.parseColor("#FFFFFF"));
-            holder.mCard.setCardBackgroundColor(Color.parseColor("#2DB4C8"));
+            holder.mMessage.setTextColor(ContextCompat.getColor(context,R.color.black));
+            holder.mCard.setCardBackgroundColor(ContextCompat.getColor(context,R.color.colorPrimary));
         }
 
     }
