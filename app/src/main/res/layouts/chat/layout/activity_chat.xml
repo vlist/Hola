@@ -34,7 +34,7 @@
             android:scrollbars="vertical" />
     </androidx.core.widget.NestedScrollView>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/send_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,21 +46,25 @@
 
         <EditText
             android:id="@+id/message_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/send_button"
+            app:layout_constraintBottom_toBottomOf="parent"
             style="@style/Widget.hola.TextInputLayout"
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10sp"
-            android:layout_weight="0.8"
+            android:layout_width="0dp"
             android:hint="@string/message_input_placeholder" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/send_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             style="@style/Widget.hola.Button"
+            android:autoSizeMaxTextSize="15dp"
             android:layout_width="0dp"
             android:maxLines="1"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10sp"
-            android:layout_weight="0.2"
+
             android:text="@string/send_button" />
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

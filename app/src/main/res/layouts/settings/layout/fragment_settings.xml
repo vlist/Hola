@@ -18,8 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="20sp"
-            android:elevation="10dp"
-            app:cardCornerRadius="30dp">
+            app:cardElevation="10dp"
+            app:cardCornerRadius="@dimen/cornerRoundRadius">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -40,7 +40,6 @@
                     android:layout_margin="10sp"
                     android:text="@string/attr_placeholder"
                     android:textColor="@color/textColorPrimary"
-
                     android:textSize="30sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -51,8 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="20sp"
-            android:elevation="10dp"
-            app:cardCornerRadius="30dp">
+            app:cardElevation="@dimen/cardview_default_elevation"
+            app:cardCornerRadius="@dimen/cornerRoundRadius">
 
             <LinearLayout
                 android:layout_width="350dp"
