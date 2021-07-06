@@ -15,12 +15,20 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="10sp" />
 
+    <ImageView
+        android:id="@+id/right_bubble_flag"
+        android:layout_width="10dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10sp"
+        android:layout_toStartOf="@id/image_part"
+        android:src="@drawable/ic_right_flag" />
+
     <include
         layout="@layout/text_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
-        android:layout_toStartOf="@id/image_part" />
+        android:layout_toStartOf="@id/right_bubble_flag" />
 
 
 </RelativeLayout>
