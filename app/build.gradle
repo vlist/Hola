@@ -36,6 +36,7 @@ android {
                     'src/main/res/layouts/matches',
                     'src/main/res/layouts/recommend',
                     'src/main/res/layouts/login_and_register',
+                    'src/main/res/layouts/userProfile',
 
                     'src/main/res/'
 
