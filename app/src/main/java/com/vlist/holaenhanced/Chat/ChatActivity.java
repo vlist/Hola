@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,6 +54,13 @@ public class ChatActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.chat_toolbar);
         mToolbar.setTitle(getIntent().getExtras().getString("username"));
         setSupportActionBar(mToolbar);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
         getChatId();
 
