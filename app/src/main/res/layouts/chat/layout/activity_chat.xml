@@ -46,6 +46,7 @@
 
         <EditText
             android:id="@+id/message_input"
+            style="@style/Widget.hola.TextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10sp"
@@ -56,6 +57,7 @@
             android:id="@+id/send_button"
             style="@style/Widget.hola.Button"
             android:layout_width="0dp"
+            android:maxLines="1"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10sp"
             android:layout_weight="0.2"

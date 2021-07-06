@@ -1,11 +1,15 @@
 package com.vlist.holaenhanced.Chat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -18,8 +22,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.vlist.holaenhanced.Matches.MatchesObject;
 import com.vlist.holaenhanced.R;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -75,16 +85,10 @@ public class ChatActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mChatLayoutManager);
 
         mChatAdapter = new ChatAdapter(getDataSetChat(), ChatActivity.this);
+        getUsersProfileImage();
         mRecyclerView.setAdapter(mChatAdapter);
 
         mChatScrollView = findViewById(R.id.chat_scrollview);
-
-        mSendEditText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mChatScrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
-            }
-        });
 
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +150,7 @@ public class ChatActivity extends AppCompatActivity {
                     }
 
                     if (message != null && createdByUser != null) {
-                        Boolean currentUserBoolean = false;
+                        boolean currentUserBoolean = false;
                         if (createdByUser.equals(currentUserID)) {
                             currentUserBoolean = true;
                         }
@@ -181,4 +185,54 @@ public class ChatActivity extends AppCompatActivity {
     private List<ChatObject> getDataSetChat() {
         return resultsChat;
     }
+
+
+    private void getUsersProfileImage() {
+        ChatAdapter adapter = (ChatAdapter) mChatAdapter;
+        DatabaseReference friendDb = FirebaseDatabase.getInstance().getReference().child("Users").child(matchId);
+        DatabaseReference currendDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID);
+
+        friendDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String userId = dataSnapshot.getKey();
+                    String profileImageUrl = "";
+                    if (dataSnapshot.child("profileImageUrl").getValue() != null) {
+                        profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
+                    }
+                    adapter.setFriendProfileImageUrl(profileImageUrl);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
+
+        currendDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String userId = dataSnapshot.getKey();
+                    String profileImageUrl = "";
+                    if (dataSnapshot.child("profileImageUrl").getValue() != null) {
+                        profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
+                    }
+                    adapter.setSelfProfileImageUrl(profileImageUrl);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
+
+
 }
