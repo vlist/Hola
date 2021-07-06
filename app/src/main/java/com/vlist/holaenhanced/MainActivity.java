@@ -143,4 +143,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+    }
 }

@@ -9,6 +9,7 @@
     android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     tools:context=".StarterActivity">
 
+
     <LinearLayout
         android:layout_gravity="center_horizontal"
         android:id="@+id/app_title"
