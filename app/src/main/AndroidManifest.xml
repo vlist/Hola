@@ -11,8 +11,10 @@
         android:roundIcon="@mipmap/app_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HolaEnhanced">
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".Chat.ChatActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity
+            android:name=".Chat.ChatActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".StarterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -13,6 +13,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -97,7 +99,12 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-
+        mSendEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mChatScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
     }
 
 
@@ -232,7 +239,6 @@ public class ChatActivity extends AppCompatActivity {
 
 
     }
-
 
 
 }
