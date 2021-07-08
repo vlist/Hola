@@ -89,7 +89,6 @@ public class ChooseFragment extends Fragment {
 
     public void switchToLogin(View view) {
         Log.i(TAG, "Login onClick()");
-        Toast.makeText(getActivity(),"Login onClick()",Toast.LENGTH_SHORT).show();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.starter_content,new LoginFragment(),null)
                 .commit();

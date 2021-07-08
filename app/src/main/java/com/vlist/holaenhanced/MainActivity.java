@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         fm.beginTransaction()
-                .replace(R.id.main_content, new PlaceholderFragment())
+                .replace(R.id.main_content, new RecommendFragment())
                 .commit();
     }
 
@@ -88,10 +88,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.nav_home:
-                switchToFragment(new PlaceholderFragment());
-                toolbar.setTitle("Home - Hola");
-                break;
             case R.id.nav_chats:
                 switchToFragment(new MatchesFragment());
                 toolbar.setTitle("Chat");

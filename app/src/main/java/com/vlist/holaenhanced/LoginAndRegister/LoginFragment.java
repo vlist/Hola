@@ -94,8 +94,6 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-
-
         mNext = (MaterialButton) view.findViewById(R.id.next_button);
         mBack = (MaterialButton) view.findViewById(R.id.cancel_button);
         mEmail = (TextInputEditText) view.findViewById(R.id.email_edit_text);
@@ -106,7 +104,6 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.i(TAG,"Back button onClick");
-                Toast.makeText(getActivity(),"Back to choose fragment",Toast.LENGTH_SHORT).show();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.starter_content,new ChooseFragment(),null)
                         .commit();
@@ -120,7 +117,6 @@ public class LoginFragment extends Fragment {
                     mPasswordLayout.setError(getString(R.string.error_password));
                 } else {
                     mPasswordLayout.setError(null);
-                    //Toast.makeText(getActivity(),(mEmail.getText().toString() + mPassword.getText()),Toast.LENGTH_SHORT).show();
 
                     userEmail = mEmail.getText().toString();
                     userPassword = mPassword.getText().toString();

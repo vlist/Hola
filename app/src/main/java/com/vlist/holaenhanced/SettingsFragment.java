@@ -34,6 +34,7 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.vlist.holaenhanced.Recommend.RecommendFragment;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -128,7 +129,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_content, new PlaceholderFragment())
+                        .replace(R.id.main_content, new RecommendFragment())
                         .commit();
             }
         });
