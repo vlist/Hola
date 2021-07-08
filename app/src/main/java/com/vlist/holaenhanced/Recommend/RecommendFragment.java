@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -41,6 +43,8 @@ public class RecommendFragment extends Fragment {
 
     private String currentUId;
 
+    private FloatingActionButton yepsButton;
+    private FloatingActionButton nopesButton;
 
     private DatabaseReference usersDb;
 
@@ -94,6 +98,9 @@ public class RecommendFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_recommend, container, false);
 
+        yepsButton = view.findViewById(R.id.yeps_button);
+        nopesButton = view.findViewById(R.id.nope_button);
+
         checkUserSex();
 
         rowItems = new ArrayList<Cards>();
@@ -140,6 +147,24 @@ public class RecommendFragment extends Fragment {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
                 Toast.makeText(getActivity(), "Item Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        yepsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rowItems.size() != 0) {
+                    flingContainer.getTopCardListener().selectRight();
+                }
+            }
+        });
+
+        nopesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rowItems.size() != 0) {
+                    flingContainer.getTopCardListener().selectLeft();
+                }
             }
         });
 
